@@ -328,6 +328,19 @@ int read_cfg(const char *cfg_path, struct Config *st, button *buttons_cfg[N]) {
             if (!quiet)
                 fprintf(stderr, "Error in the '%s' button configuration: invalid/missing values. Exiting.\n", button_names[i]);
         }
+
+		if (!config_lookup_int(&cfg, "row_gap", &st->row_gap)) {
+			if (!quiet)
+				fprintf(stderr, "Error in '%s': invalid 'row_gap'. Using default.\n", cfg_path);
+			st->row_gap = 10;  // valor padrão
+		}
+
+		if (!config_lookup_int(&cfg, "column_gap", &st->column_gap)) {
+    		if (!quiet)
+    	   		fprintf(stderr, "Error in '%s': invalid 'column_gap'. Using default.\n", cfg_path);
+	    	st->column_gap = 10;  // valor padrão
+		}
+
     }
     
     config_destroy(&cfg);

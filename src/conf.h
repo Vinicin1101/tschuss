@@ -37,6 +37,8 @@ struct Config {
     int columns;
     char *top_text;
     char *bottom_text;
+    int column_gap;
+    int row_gap;
 };
 
 typedef struct {
